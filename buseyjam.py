@@ -1,7 +1,10 @@
 from json import loads
-from pprint import pprint
+from sys import version_info
 import time
 import re
+
+if version_info[0] != 2:
+	exit("Python 2.7.9 or less than Py3k recommended.")
 
 rounds = 1000
 current_milli_time = lambda: int(round(time.time() * 1000))

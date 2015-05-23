@@ -13,7 +13,7 @@ samples = loads(fh.read())
 success_max = len(samples)*rounds
 
 def regex_method(message):
-	results = re_compiled.search(message)
+	results = regex_method_compiled.search(message)
 	if results:
 		return 1
 	return 0
@@ -41,17 +41,24 @@ def busey_bank_method(message):
 		if new_word.find('busey') > -1:
 			return 1
 	return 0
+def refined_regx_method(message):
+	message = message.lower()
+	results = refined_regx_compiled.search(message)
+	if results:
+		return 1
+	return 0
 
 # Define a function here that takes an unfiltered message
 # Call return 1 when your function finds busey
 # Always return 0 for the fail condition
 
 # Stage any variables you need below this line
-re_compiled = re.compile('b+u+s+e+y+', re.I)
+regex_method_compiled = re.compile('b+u+s+e+y+', re.I)
+refined_regx_compiled = re.compile('bu+(?=s)s+(?=e)e+(?=y)')
 
 # Append your function's name to this list for it to be tested
 # Times will be printed as each function finishes running
-methods = ['regex_method', 'busey_bank_method', 'default_method']
+methods = ['regex_method', 'default_method', 'busey_bank_method', 'refined_regx_method']
 
 for method in methods:
 	results = 0
